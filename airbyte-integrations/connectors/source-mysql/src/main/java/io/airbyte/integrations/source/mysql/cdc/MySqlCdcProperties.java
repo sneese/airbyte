@@ -122,6 +122,9 @@ public class MySqlCdcProperties {
     // This to make sure that binary data represented as a base64-encoded String.
     // https://debezium.io/documentation/reference/2.2/connectors/mysql.html#mysql-property-binary-handling-mode
     props.setProperty("binary.handling.mode", "base64");
+    // This to address airbyte io.debezium.text.ParsingException: DDL statement couldn't be parsed...
+    // https://debezium.io/documentation/reference/2.2/connectors/mysql.html#mysql-property-event-processing-failure-handling-mode
+    props.setProperty("event.processing.failure.handling.mode", "ignore");
     props.setProperty("database.include.list", sourceConfig.get("database").asText());
 
     return props;
